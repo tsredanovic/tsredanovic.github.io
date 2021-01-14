@@ -25,4 +25,31 @@
     target: '#sideNav'
   });
 
+  // StackOverflow Reputation
+  $.getJSON( "https://api.stackexchange.com/2.2/users/6182497?site=stackoverflow")
+    .done(function( json ) {
+      $('#stackOverflowRep').text(json.items[0].reputation);
+    })
+    .fail(function( jqxhr, textStatus, error ) {
+      $('#stackOverflowRep').text("-1");
+    });
+
+  // Reddit Karma
+  $.getJSON( "https://www.reddit.com/user/dashidasher/about.json")
+    .done(function( json ) {
+      $('#redditKarma').text(json.data.total_karma);
+    })
+    .fail(function( jqxhr, textStatus, error ) {
+      $('#redditKarma').text("-1");
+    });
+
+  // Fortnite Wins
+  $.getJSON( "https://fortnite-api.com/v1/stats/br/v2?name=dashydasher")
+    .done(function( json ) {
+      $('#fortniteWins').text(json.data.stats.all.overall.wins);
+    })
+    .fail(function( jqxhr, textStatus, error ) {
+      $('#fortniteWins').text("-1");
+    });
+
 })(jQuery); // End of use strict
